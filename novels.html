@@ -1,1 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisha Shastry Audiostories | Novels Archive</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Layout Matrix (Mirrors index.html perfectly for seamless continuity) */
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
+        .site-container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        /* 1. Top Navbar */
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-bottom: 2px solid #e1b12c;
+            padding: 6px;
+            margin-bottom: 35px;
+            border-radius: 6px;
+        }
+
+        .nav-tab {
+            color: #8b949e;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 10px 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex: 1;
+            text-align: center;
+            transition: color 0.2s ease;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            color: #e1b12c;
+        }
+
+        /* 2. Mid Section Symmetry Grid */
+        .mid-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            margin-bottom: 35px;
+            align-items: stretch;
+        }
+
+        .profile-column-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .massive-photo-box {
+            flex: 1;
+            background-color: #161b22;
+            border: 2px solid #e1b12c;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(225, 177, 44, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 480px;
+        }
+
+        .massive-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .author-meta-under {
+            margin-top: 15px;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .author-meta-under h1 {
+            margin: 0 0 6px 0;
+            color: #f0f6fc;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .author-meta-under p {
+            margin: 0;
+            color: #8b949e;
+            font-size: 1.05rem;
+            line-height: 1.4;
+        }
+
+        .author-meta-under .title-tag {
+            color: #e1b12c;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        /* Right Side: Navigation Dashboard Stack */
+        .vertical-dashboard {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+            box-sizing: border-box;
+        }
+
+        .dash-btn {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 0 8px rgba(225, 177, 44, 0.05);
+        }
+
+        .dash-btn:hover, .dash-btn.active {
+            background-color: #1f242c;
+            border-color: #e1b12c;
+            color: #e1b12c;
+            box-shadow: 0 0 15px rgba(225, 177, 44, 0.35); 
+        }
+
+        /* 3. Output Main Viewport (Novels Specific Section) */
+        .output-viewport {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .output-viewport h2.page-main-title {
+            color: #f0f6fc;
+            margin-top: 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            border-bottom: 2px solid #e1b12c;
+            padding-bottom: 15px;
+            margin-bottom: 35px;
+            text-shadow: 0 0 10px rgba(225, 177, 44, 0.2);
+        }
+
+        /* Master Stack for Horizontal Book Cards */
+        .novels-list-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        /* Horizontal Layout Row Box matching your pen-and-paper sketch */
+        .book-row-container {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 25px;
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: border-color 0.2s ease;
+        }
+
+        .book-row-container:hover {
+            border-color: rgba(225, 177, 44, 0.3);
+        }
+
+        /* Left Column: Image Area with Coming Soon parameter overlay */
+        .book-cover-placeholder {
+            width: 100%;
+            height: 270px;
+            background-color: #161b22;
+            border: 1px dashed #30363d;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #8b949e;
+            padding: 10px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .book-cover-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #30363d;
+        }
+
+        .book-cover-placeholder span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #e1b12c;
+            font-weight: 700;
+        }
+
+        /* Right Column: Information Stack and Action Controls */
+        .book-details-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            justify-content: space-between;
+        }
+
+        .book-title-header h3 {
+            margin: 0;
+            color: #f0f6fc;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        /* Description Segment Box matching description panel in notebook */
+        .description-panel {
+            background-color: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 6px;
+            padding: 14px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #8b949e;
+        }
+
+        /* Action Buttons Grid Layout */
+        .actions-row-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* Download Button - Fixed Coming Soon State */
+        .download-btn-placeholder {
+            background-color: #161b22;
+            border: 1px solid #21262d;
+            color: #8b949e;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: not-allowed;
+            opacity: 0.65;
+        }
+
+        /* Interactive Clickable Store Redirect Buttons */
+        .store-dropdown-panel {
+            display: flex;
+            gap: 10px;
+        }
+
+        .retail-link {
+            flex: 1;
+            background-color: #1f242c;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #c9d1d9;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .retail-link.amzn:hover {
+            border-color: #ff9900;
+            color: #ff9900;
+            box-shadow: 0 0 10px rgba(255, 153, 0, 0.15);
+        }
+
+        .retail-link.fkrt:hover {
+            border-color: #2874f0;
+            color: #2874f0;
+            box-shadow: 0 0 10px rgba(40, 116, 240, 0.15);
+        }
+
+        /* Responsive Breakpoint Layout adjustments */
+        @media (max-width: 900px) {
+            .book-row-container { grid-template-columns: 1fr; }
+            .book-cover-placeholder { height: 220px; }
+            .actions-row-grid { grid-template-columns: 1fr; }
+            .mid-grid { grid-template-columns: 1fr; gap: 20px; }
+            .top-navbar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-container">
+
+        <nav class="top-navbar">
+            <a href="index.html" class="nav-tab">About</a>
+            <a href="video.html" class="nav-tab">Video</a>
+            <a href="audio.html" class="nav-tab">Audio</a>
+            <a href="comics.html" class="nav-tab">Comics</a>
+            <a href="novels.html" class="nav-tab active">Novels</a>
+            <a href="membership.html" class="nav-tab">Membership</a>
+            <a href="awards.html" class="nav-tab">Awards</a>
+            <a href="analytics.html" class="nav-tab">Analytics</a>
+            <a href="contact.html" class="nav-tab">Contact</a>
+        </nav>
+
+        <section class="mid-grid">
+            <div class="profile-column-wrapper">
+                <div class="massive-photo-box">
+                    <img src="https://via.placeholder.com/600x800" alt="Nisha Shastry Official">
+                </div>
+                <div class="author-meta-under">
+                    <span class="title-tag">Official Channel Hub</span>
+                    <h1>Nisha Shastry</h1>
+                    <p>Author, Narrator & Creator of Cinematic Audio Universes.</p>
+                </div>
+            </div>
+
+            <div class="vertical-dashboard">
+                <a href="index.html" class="dash-btn">About</a>
+                <a href="video.html" class="dash-btn">Video</a>
+                <a href="audio.html" class="dash-btn">Audio</a>
+                <a href="comics.html" class="dash-btn">Comics</a>
+                <a href="novels.html" class="dash-btn active">Novels</a>
+                <a href="membership.html" class="dash-btn">Membership</a>
+                <a href="awards.html" class="dash-btn">Awards</a>
+                <a href="analytics.html" class="dash-btn">Analytics</a>
+                <a href="contact.html" class="dash-btn">Contact</a>
+            </div>
+        </section>
+
+        <main class="output-viewport">
+            <h2 class="page-main-title">Literary Archive</h2>
+
+            <div class="novels-list-stack">
+
+                <div class="book-row-container">
+                    <div class="book-cover-placeholder">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>Cover Art<br>Coming Soon</span>
+                    </div>
+                    <div class="book-details-stack">
+                        <div class="book-title-header">
+                            <h3>Child of Two Worlds — Book 1 of The Saga Untold</h3>
+                        </div>
+                        <div class="description-panel">
+                            Cast into a dazzling parallel universe, an ordinary man confronts mind-bending cosmic powers and a seven-dimensional reality. Prophesied as a fallen empire's final hope, can he conquer his darkest fears to rewrite destiny itself?
+                        </div>
+                        <div class="actions-row-grid">
+                            <div class="download-btn-placeholder">
+                                <i class="fa-solid fa-file-pdf"></i> PDF Download Coming Soon
+                            </div>
+                            <div class="store-dropdown-panel">
+                                <a href="https://www.amazon.in/Child-Two-Worlds-Book-Untold/dp/8196403275/" target="_blank" class="retail-link amzn">
+                                    <i class="fa-brands fa-amazon"></i> Amazon
+                                </a>
+                                <a href="https://www.flipkart.com/child-two-worlds-book-1-saga-untold/p/itm1c2ebc149d9a1" target="_blank" class="retail-link fkrt">
+                                    <i class="fa-solid fa-cart-shopping"></i> Flipkart
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-row-container">
+                    <div class="book-cover-placeholder">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>Cover Art<br>Coming Soon</span>
+                    </div>
+                    <div class="book-details-stack">
+                        <div class="book-title-header">
+                            <h3>Dharma: The Reckoning</h3>
+                        </div>
+                        <div class="description-panel">
+                            The mind-bending cosmic saga ignites as Dharma embraces his ultimate cosmic power. Trapped between reality and devastating alien warfare, he must spark a grand rebellion against a tyrant to save the fabric of the universe.
+                        </div>
+                        <div class="actions-row-grid">
+                            <div class="download-btn-placeholder">
+                                <i class="fa-solid fa-file-pdf"></i> PDF Download Coming Soon
+                            </div>
+                            <div class="store-dropdown-panel">
+                                <a href="https://www.amazon.in/Dharmas-Reckoning-Book-Untold-Dharma/dp/9390347505/" target="_blank" class="retail-link amzn">
+                                    <i class="fa-brands fa-amazon"></i> Amazon
+                                </a>
+                                <a href="https://www.flipkart.com/dharmas-reckoning-book-2-saga-untold-dharma-series/p/itmf8d8ac988eb71" target="_blank" class="retail-link fkrt">
+                                    <i class="fa-solid fa-cart-shopping"></i> Flipkart
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-row-container">
+                    <div class="book-cover-placeholder">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>Cover Art<br>Coming Soon</span>
+                    </div>
+                    <div class="book-details-stack">
+                        <div class="book-title-header">
+                            <h3>The Poison Girl</h3>
+                        </div>
+                        <div class="description-panel">
+                            A captivating, gothic spellbind of a story! A mysterious girl appears from nowhere to avenge her father’s death, unaware she is a mere pawn in a treacherous game. Prepare for a heroic drama where the breathtaking plot explodes at the end.
+                        </div>
+                        <div class="actions-row-grid">
+                            <div class="download-btn-placeholder">
+                                <i class="fa-solid fa-file-pdf"></i> PDF Download Coming Soon
+                            </div>
+                            <div class="store-dropdown-panel">
+                                <a href="https://www.amazon.in/Poison-Girl-Dr-Nisha-Shastry/dp/9349988828/" target="_blank" class="retail-link amzn">
+                                    <i class="fa-brands fa-amazon"></i> Amazon
+                                </a>
+                                <a href="https://www.flipkart.com/poison-girl/p/itmd8087c4b160c6" target="_blank" class="retail-link fkrt">
+                                    <i class="fa-solid fa-cart-shopping"></i> Flipkart
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-row-container">
+                    <div class="book-cover-placeholder">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>Cover Art<br>Coming Soon</span>
+                    </div>
+                    <div class="book-details-stack">
+                        <div class="book-title-header">
+                            <h3>Keyur ka Kahar</h3>
+                        </div>
+                        <div class="description-panel">
+                            A cinematic collision of high-stakes science fiction and raw human emotion! When a brilliant experiment unleashes unprecedented devastation, humanity trembles before a terrifying fate. A gripping, explosive thrill ride.
+                        </div>
+                        <div class="actions-row-grid">
+                            <div class="download-btn-placeholder">
+                                <i class="fa-solid fa-file-pdf"></i> PDF Download Coming Soon
+                            </div>
+                            <div class="store-dropdown-panel">
+                                <a href="https://www.amazon.in/Keyur-Kahar-Dr-Nisha-Shastry/dp/9348578987/" target="_blank" class="retail-link amzn">
+                                    <i class="fa-brands fa-amazon"></i> Amazon
+                                </a>
+                                <a href="https://www.flipkart.com/keyur-ka-kahar/p/itm29a92daf082a8" target="_blank" class="retail-link fkrt">
+                                    <i class="fa-solid fa-cart-shopping"></i> Flipkart
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-row-container">
+                    <div class="book-cover-placeholder">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>Cover Art<br>Coming Soon</span>
+                    </div>
+                    <div class="book-details-stack">
+                        <div class="book-title-header">
+                            <h3>Rahasyamai Khel</h3>
+                        </div>
+                        <div class="description-panel">
+                            Step into a deceptive playground where every move is monitored and deadly. Blurring the lines between hallucination and reality, this psychological puzzle pulls characters into a sinister maze where losing means absolute ruin.
+                        </div>
+                        <div class="actions-row-grid">
+                            <div class="download-btn-placeholder">
+                                <i class="fa-solid fa-file-pdf"></i> PDF Download Coming Soon
+                            </div>
+                            <div class="store-dropdown-panel">
+                                <a href="https://www.amazon.in/Rahasyamayi-Khel-Dr-Nisha-Shastry/dp/9348578324/" target="_blank" class="retail-link amzn">
+                                    <i class="fa-brands fa-amazon"></i> Amazon
+                                </a>
+                                <a href="https://www.flipkart.com/ek-rahasyamayi-khel/p/itmf3dd7b9d4ab2a" target="_blank" class="retail-link fkrt">
+                                    <i class="fa-solid fa-cart-shopping"></i> Flipkart
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-row-container">
+                    <div class="book-cover-placeholder">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>Cover Art<br>Coming Soon</span>
+                    </div>
+                    <div class="book-details-stack">
+                        <div class="book-title-header">
+                            <h3>The Intern</h3>
+                        </div>
+                        <div class="description-panel">
+                            A breathtaking, high-stakes thriller! A new intern enters a powerful pharma giant as a brutal trail of bodies follows. While a rogue executive trades his wife for an ancient book, a brilliant detective unravels a web of dangerous conspiracies. All these twisted secrets bleed into one devastating nightmare you won't see coming.
+                        </div>
+                        <div class="actions-row-grid">
+                            <div class="download-btn-placeholder">
+                                <i class="fa-solid fa-file-pdf"></i> PDF Download Coming Soon
+                            </div>
+                            <div class="store-dropdown-panel">
+                                <a href="https://www.amazon.in/Intern-Hindi-Dr-Nisha-Shastry-ebook/dp/B0DLGLFKZY/" target="_blank" class="retail-link amzn">
+                                    <i class="fa-brands fa-amazon"></i> Amazon
+                                </a>
+                                <a href="https://www.flipkart.com/the-intern/p/itm7c24ea81bb649" target="_blank" class="retail-link fkrt">
+                                    <i class="fa-solid fa-cart-shopping"></i> Flipkart
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
