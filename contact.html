@@ -1,1 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisha Shastry Audiostories | Contact Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Layout Matrix (Mirrors index.html perfectly for seamless continuity) */
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
+        .site-container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        /* 1. Top Navbar */
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-bottom: 2px solid #e1b12c;
+            padding: 6px;
+            margin-bottom: 35px;
+            border-radius: 6px;
+        }
+
+        .nav-tab {
+            color: #8b949e;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 10px 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex: 1;
+            text-align: center;
+            transition: color 0.2s ease;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            color: #e1b12c;
+        }
+
+        /* 2. Mid Section Symmetry Grid */
+        .mid-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            margin-bottom: 35px;
+            align-items: stretch;
+        }
+
+        .profile-column-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .massive-photo-box {
+            flex: 1;
+            background-color: #161b22;
+            border: 2px solid #e1b12c;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(225, 177, 44, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 480px;
+        }
+
+        .massive-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .author-meta-under {
+            margin-top: 15px;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .author-meta-under h1 {
+            margin: 0 0 6px 0;
+            color: #f0f6fc;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .author-meta-under p {
+            margin: 0;
+            color: #8b949e;
+            font-size: 1.05rem;
+            line-height: 1.4;
+        }
+
+        .author-meta-under .title-tag {
+            color: #e1b12c;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        /* Right Side: Navigation Dashboard Stack */
+        .vertical-dashboard {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+            box-sizing: border-box;
+        }
+
+        .dash-btn {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 0 8px rgba(225, 177, 44, 0.05);
+        }
+
+        .dash-btn:hover, .dash-btn.active {
+            background-color: #1f242c;
+            border-color: #e1b12c;
+            color: #e1b12c;
+            box-shadow: 0 0 15px rgba(225, 177, 44, 0.35); 
+        }
+
+        /* 3. Output Main Viewport (Contact Hub Specific Section) */
+        .output-viewport {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Elegant Massive Title Design */
+        .output-viewport h2.page-main-title {
+            color: #f0f6fc;
+            margin-top: 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            border-bottom: 2px solid #e1b12c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(225, 177, 44, 0.2);
+        }
+
+        /* Stack Wrapper for your notebook row layout */
+        .contact-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* Pill-Shaped Link Container Row matching your handwritten circles/boxes */
+        .contact-row-card {
+            display: flex;
+            align-items: center;
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 50px; /* Forces round, sleek pill format matching sketches */
+            padding: 12px 25px;
+            text-decoration: none;
+            color: #c9d1d9;
+            transition: all 0.25s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Circle Symbol Icon Box on Left */
+        .icon-circle {
+            width: 45px;
+            height: 45px;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3rem;
+            color: #8b949e;
+            transition: all 0.2s ease;
+        }
+
+        /* Text Area Labels on Right */
+        .contact-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-value {
+            margin-left: auto; /* Aligns values elegantly to the far right */
+            font-size: 0.95rem;
+            color: #8b949e;
+            font-family: monospace;
+            transition: color 0.2s ease;
+        }
+
+        /* Non-clickable upcoming card variant for Facebook layout state */
+        .coming-soon-card {
+            cursor: not-allowed;
+            opacity: 0.75;
+        }
+
+        .coming-soon-badge {
+            margin-left: auto;
+            background-color: #21262d;
+            color: #e1b12c;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(225, 177, 44, 0.3);
+        }
+
+        /* Ambient Glow States on Row Interactions */
+        .contact-row-card:not(.coming-soon-card):hover {
+            border-color: #e1b12c;
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(225, 177, 44, 0.2);
+            background-color: #161b22;
+        }
+
+        .contact-row-card:not(.coming-soon-card):hover .icon-circle {
+            border-color: #e1b12c;
+            color: #e1b12c;
+            background-color: #0d1117;
+            text-shadow: 0 0 8px rgba(225, 177, 44, 0.4);
+        }
+
+        .contact-row-card:not(.coming-soon-card):hover .contact-value {
+            color: #e1b12c;
+        }
+
+        /* Responsive Configuration matrix */
+        @media (max-width: 900px) {
+            .mid-grid { grid-template-columns: 1fr; gap: 20px; }
+            .top-navbar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+            .contact-row-card { padding: 10px 18px; }
+            .contact-value { display: none; } /* Drops fine print details gracefully on tiny mobile devices */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-container">
+
+        <nav class="top-navbar">
+            <a href="index.html" class="nav-tab">About</a>
+            <a href="video.html" class="nav-tab">Video</a>
+            <a href="audio.html" class="nav-tab">Audio</a>
+            <a href="comics.html" class="nav-tab">Comics</a>
+            <a href="novels.html" class="nav-tab">Novels</a>
+            <a href="membership.html" class="nav-tab">Membership</a>
+            <a href="awards.html" class="nav-tab">Awards</a>
+            <a href="analytics.html" class="nav-tab">Analytics</a>
+            <a href="contact.html" class="nav-tab active">Contact</a>
+        </nav>
+
+        <section class="mid-grid">
+            <div class="profile-column-wrapper">
+                <div class="massive-photo-box">
+                    <img src="https://via.placeholder.com/600x800" alt="Nisha Shastry Official">
+                </div>
+                <div class="author-meta-under">
+                    <span class="title-tag">Official Channel Hub</span>
+                    <h1>Nisha Shastry</h1>
+                    <p>Author, Narrator & Creator of Cinematic Audio Universes.</p>
+                </div>
+            </div>
+
+            <div class="vertical-dashboard">
+                <a href="index.html" class="dash-btn">About</a>
+                <a href="video.html" class="dash-btn">Video</a>
+                <a href="audio.html" class="dash-btn">Audio</a>
+                <a href="comics.html" class="dash-btn">Comics</a>
+                <a href="novels.html" class="dash-btn">Novels</a>
+                <a href="membership.html" class="dash-btn">Membership</a>
+                <a href="awards.html" class="dash-btn">Awards</a>
+                <a href="analytics.html" class="dash-btn">Analytics</a>
+                <a href="contact.html" class="dash-btn active">Contact</a>
+            </div>
+        </section>
+
+        <main class="output-viewport">
+            <h2 class="page-main-title">Contact</h2>
+
+            <div class="contact-stack">
+                
+                <a href="mailto:nishashastry@gmail.com" class="contact-row-card">
+                    <div class="icon-circle">
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+                    <span class="contact-label">Gmail</span>
+                    <span class="contact-value">nishashastry@gmail.com</span>
+                </a>
+
+                <a href="https://www.instagram.com/imnish1992/" target="_blank" class="contact-row-card">
+                    <div class="icon-circle">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <span class="contact-label">Instagram</span>
+                    <span class="contact-value">@imnish1992</span>
+                </a>
+
+                <a href="https://www.youtube.com/@nishashastry" target="_blank" class="contact-row-card">
+                    <div class="icon-circle">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    <span class="contact-label">YouTube Channel</span>
+                    <span class="contact-value">@nishashastry</span>
+                </a>
+
+                <a href="https://in.linkedin.com/in/dr-nisha-shastry-286854a9" target="_blank" class="contact-row-card">
+                    <div class="icon-circle">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </div>
+                    <span class="contact-label">LinkedIn</span>
+                    <span class="contact-value">dr-nisha-shastry</span>
+                </a>
+
+                <div class="contact-row-card coming-soon-card">
+                    <div class="icon-circle">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </div>
+                    <span class="contact-label">Facebook</span>
+                    <span class="coming-soon-badge">Coming Soon</span>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
