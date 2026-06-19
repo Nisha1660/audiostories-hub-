@@ -32,7 +32,7 @@
             justify-content: space-between;
             background-color: #161b22;
             border: 1px solid #30363d;
-            border-bottom: 2px solid #e1b12c; /* Premium Gold Accent Line */
+            border-bottom: 2px solid #e1b12c;
             padding: 6px;
             margin-bottom: 35px;
             border-radius: 6px;
@@ -57,70 +57,80 @@
             color: #e1b12c;
         }
 
-        /* 2. Mid Section Symmetry Grid (Tall Profile Card vs Vertical Stacked List) */
+        /* 2. Mid Section Symmetry Grid (Massive Profile Box vs Vertical Stacked List) */
         .mid-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr; /* Balanced proportions for photo card and tall buttons */
+            grid-template-columns: 1fr 1.2fr;
             gap: 40px;
             margin-bottom: 35px;
-            align-items: stretch; /* Forces left and right cards to have identical height */
+            align-items: stretch; /* Keeps both sides exactly equal in height */
         }
 
-        /* Left Side: Large Taller Profile Card */
-        .author-profile-block {
+        /* Left Side: Massive Image Container & Text Below */
+        .profile-column-wrapper {
             display: flex;
             flex-direction: column;
+            width: 100%;
+        }
+
+        .massive-photo-box {
+            flex: 1; /* Automatically stretches height to match the 9 tabs exactly */
+            background-color: #161b22;
+            border: 2px solid #e1b12c;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(225, 177, 44, 0.4); /* Gold Neon Glow on borders */
+            display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 12px;
-            padding: 30px;
-            box-sizing: border-box;
+        }
+
+        .massive-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Forces whatever image you use to perfectly fill the box area */
+            display: block;
+        }
+
+        /* Name and details shifted entirely out and under the box */
+        .author-meta-under {
+            margin-top: 15px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 0 10px;
         }
 
-        .author-avatar {
-            width: 220px; /* Made photo significantly larger */
-            height: 240px;
-            border-radius: 8px;
-            border: 2px solid #e1b12c; /* Gold border to highlight the frame */
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-        .author-meta h1 {
-            margin: 0 0 8px 0;
+        .author-meta-under h1 {
+            margin: 0 0 6px 0;
             color: #f0f6fc;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             letter-spacing: -0.5px;
         }
 
-        .author-meta p {
+        .author-meta-under p {
             margin: 0;
             color: #8b949e;
-            font-size: 1rem;
-            line-height: 1.5;
+            font-size: 1.05rem;
+            line-height: 1.4;
         }
 
-        .author-meta .title-tag {
+        .author-meta-under .title-tag {
             color: #e1b12c;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             display: block;
         }
 
-        /* Right Side: Completely Vertical Stacked List (Single Column) */
+        /* Right Side: Vertical Dashboard Stacked List with Neon Glow */
         .vertical-dashboard {
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Evenly spaces rows to match the left card height */
-            gap: 10px;
+            justify-content: space-between; /* Evenly targets row spaces matching the left frame */
+            gap: 12px;
             box-sizing: border-box;
         }
 
@@ -136,18 +146,20 @@
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* Aligns text cleanly to the left like reference */
+            justify-content: flex-start;
             padding: 14px 20px;
             transition: all 0.2s ease;
             width: 100%;
             box-sizing: border-box;
+            box-shadow: 0 0 8px rgba(225, 177, 44, 0.05); /* Soft baseline button glow */
         }
 
         .dash-btn:hover, .dash-btn.active {
             background-color: #1f242c;
             border-color: #e1b12c;
             color: #e1b12c;
-            box-shadow: 0 0 10px rgba(225, 177, 44, 0.1);
+            /* Bright Gold Ambient Side Glow on Active/Hover states */
+            box-shadow: 0 0 15px rgba(225, 177, 44, 0.35); 
         }
 
         /* 3. Lower Section: Central Spanning Player Block */
@@ -158,6 +170,7 @@
             padding: 16px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.3);
             margin-bottom: 35px;
+            margin-top: 15px; /* Added breathing room below the shifted text elements */
         }
 
         .fluid-video-frame {
@@ -205,7 +218,37 @@
             letter-spacing: 0.5px;
         }
 
-        /* Responsive Configuration Layout */
+        /* Shared internal panel layout styling for content entries */
+        .playlist-group {
+            margin-top: 25px;
+            background: #1c2128;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 15px;
+        }
+        .playlist-group h3 {
+            color: #e1b12c;
+            margin-top: 0;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 8px;
+        }
+        .episode-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 10px;
+            border-bottom: 1px solid #21262d;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .episode-row:hover {
+            background: #21262d;
+            color: #e1b12c;
+        }
+        .episode-row:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive Layout Matrix */
         @media (max-width: 900px) {
             .mid-grid {
                 grid-template-columns: 1fr;
@@ -236,9 +279,12 @@
         </nav>
 
         <section class="mid-grid">
-            <div class="author-profile-block">
-                <img src="https://via.placeholder.com/220x240" alt="Nisha Shastry Avatar" class="author-avatar">
-                <div class="author-meta">
+            
+            <div class="profile-column-wrapper">
+                <div class="massive-photo-box">
+                    <img src="https://via.placeholder.com/600x800" alt="Nisha Shastry Official">
+                </div>
+                <div class="author-meta-under">
                     <span class="title-tag">Official Channel Hub</span>
                     <h1>Nisha Shastry</h1>
                     <p>Author, Narrator & Creator of Cinematic Audio Universes.</p>
@@ -246,15 +292,15 @@
             </div>
 
             <div class="vertical-dashboard" id="side-nav">
-                <button class="dash-btn active" onclick="engineSwitch('about')"> About</button>
-                <button class="dash-btn" onclick="engineSwitch('video')"> Video</button>
-                <button class="dash-btn" onclick="engineSwitch('audio')"> Audio</button>
-                <button class="dash-btn" onclick="engineSwitch('comics')"> Comics</button>
-                <button class="dash-btn" onclick="engineSwitch('novels')"> Novels</button>
-                <button class="dash-btn" onclick="engineSwitch('membership')"> Membership</button>
-                <button class="dash-btn" onclick="engineSwitch('awards')"> Awards</button>
-                <button class="dash-btn" onclick="engineSwitch('analytics')"> Analytics</button>
-                <button class="dash-btn" onclick="engineSwitch('contact')"> Contact</button>
+                <button class="dash-btn active" onclick="engineSwitch('about')">About</button>
+                <button class="dash-btn" onclick="engineSwitch('video')">Video</button>
+                <button class="dash-btn" onclick="engineSwitch('audio')">Audio</button>
+                <button class="dash-btn" onclick="engineSwitch('comics')">Comics</button>
+                <button class="dash-btn" onclick="engineSwitch('novels')">Novels</button>
+                <button class="dash-btn" onclick="engineSwitch('membership')">Membership</button>
+                <button class="dash-btn" onclick="engineSwitch('awards')">Awards</button>
+                <button class="dash-btn" onclick="engineSwitch('analytics')">Analytics</button>
+                <button class="dash-btn" onclick="engineSwitch('contact')">Contact</button>
             </div>
         </section>
 
@@ -274,17 +320,53 @@
             
             <div id="about" class="content-panel active-view">
                 <h2>Biography & Vision</h2>
-                <p>Content regarding background history, creative philosophy, and vision tracking parameters to be populated here.</p>
+                <p>Welcome to the comprehensive multi-verse narrative hub. Dr. Nisha Shastry is an acclaimed author and narrator specializing in rich cinematic sci-fi audio dramas and edge-of-your-seat thrillers.</p>
             </div>
 
             <div id="video" class="content-panel">
-                <h2>Video Transmission Portals</h2>
-                <p>Directory containing categorized sub-folders and links to visual streaming chronicles.</p>
+                <h2>Video Portals & Series</h2>
+                <p>Select an episode below to change the main video player above and start streaming.</p>
+                
+                <div class="playlist-group">
+                    <h3>🌌 Ritugn Series (Sci-Fi)</h3>
+                    <div class="episode-row" onclick="document.getElementById('theater-iframe').src='https://www.youtube.com/embed/YI79GfFw_iY?autoplay=1'">
+                        <span>Ritugn - Official Sci-Fi Trailer</span>
+                        <span style="color: #8b949e;">Teaser</span>
+                    </div>
+                    <div class="episode-row" onclick="document.getElementById('theater-iframe').src='https://www.youtube.com/embed/6e_XhN-Xzrs?autoplay=1'">
+                        <span>Ritugn - Episode 1: The Gateway to Zydia</span>
+                        <span style="color: #8b949e;">58:51</span>
+                    </div>
+                </div>
+
+                <div class="playlist-group">
+                    <h3>🚀 The Last Olethros (Octet Saga)</h3>
+                    <div class="episode-row" onclick="document.getElementById('theater-iframe').src='https://www.youtube.com/embed/yXzPWhZ2qT0?autoplay=1'">
+                        <span>The Last Olethros - Chapters 1 to 18</span>
+                        <span style="color: #8b949e;">54:20</span>
+                    </div>
+                </div>
             </div>
 
             <div id="audio" class="content-panel">
-                <h2>Audio Narratives & Playlists</h2>
-                <p>Categorized lists dedicated entirely to narrative audiobooks, voice logs, and podcasts.</p>
+                <h2>Audio Universes & Audiobooks</h2>
+                <p>Listen to high-intensity audio dramas. Click an episode below to change the main player frame above.</p>
+
+                <div class="playlist-group">
+                    <h3>🎙️ Dharma Series (Hindi Sci-Fi Audiobook)</h3>
+                    <div class="episode-row" onclick="document.getElementById('theater-iframe').src='https://www.youtube.com/embed/1kYdZcWfHwI?autoplay=1'">
+                        <span>Dharma Part 1 - Do Duniya Ka Waris</span>
+                        <span style="color: #8b949e;">11:47:56</span>
+                    </div>
+                </div>
+
+                <div class="playlist-group">
+                    <h3>🎧 Special Suspense & Thriller Audio Logs</h3>
+                    <div class="episode-row" onclick="document.getElementById('theater-iframe').src='https://www.youtube.com/embed/yXzPWhZ2qT0?autoplay=1'">
+                        <span>The Midnight Transmission (Full Audiobook)</span>
+                        <span style="color: #8b949e;">54 mins</span>
+                    </div>
+                </div>
             </div>
 
             <div id="comics" class="content-panel">
