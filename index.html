@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisha Shastry Audiostories | Official Portal</title>
+    <style>
+        /* Base Canvas Settings */
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Fixed Wrapper for Absolute Symmetry Alignment */
+        .site-container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        /* 1. Top Navbar Navigation System (9 Tabs) */
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-bottom: 2px solid #e1b12c; /* Premium Gold Accent Line */
+            padding: 6px;
+            margin-bottom: 35px;
+            border-radius: 6px;
+        }
+
+        .nav-tab {
+            background: none;
+            border: none;
+            color: #8b949e;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 10px 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex: 1;
+            text-align: center;
+            transition: color 0.2s ease;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            color: #e1b12c;
+        }
+
+        /* 2. Mid Section Symmetry Grid (Left Profile vs Right Vertical Panel) */
+        .mid-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 35px;
+            align-items: stretch; /* Forces equal heights to guarantee alignment */
+        }
+
+        /* Left Side: Author Bio Block */
+        .author-profile-block {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            background-color: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 8px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .author-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            object-fit: cover;
+        }
+
+        .author-meta h1 {
+            margin: 0 0 6px 0;
+            color: #f0f6fc;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .author-meta p {
+            margin: 0;
+            color: #8b949e;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .author-meta .title-tag {
+            color: #e1b12c;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* Right Side: Stacked Mirror Dashboard (9 Navigation Blocks) */
+        .vertical-dashboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            box-sizing: border-box;
+        }
+
+        .dash-btn {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            padding: 15px 5px;
+        }
+
+        .dash-btn:hover, .dash-btn.active {
+            background-color: #1f242c;
+            border-color: #e1b12c;
+            color: #e1b12c;
+            box-shadow: 0 0 10px rgba(225, 177, 44, 0.1);
+        }
+
+        /* 3. Lower Section: Central Spanning Player Block */
+        .main-media-theater {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            margin-bottom: 35px;
+        }
+
+        .fluid-video-frame {
+            position: relative;
+            padding-bottom: 56.25%; /* Golden 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 4px;
+            background-color: #000;
+        }
+
+        .fluid-video-frame iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* 4. Live Changing Panel Engine */
+        .dynamic-output-viewport {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            padding: 30px;
+            border-radius: 8px;
+            min-height: 250px;
+        }
+
+        .content-panel {
+            display: none;
+        }
+
+        .content-panel.active-view {
+            display: block;
+        }
+
+        .content-panel h2 {
+            color: #f0f6fc;
+            margin-top: 0;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #21262d;
+            padding-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive Configuration Matrix */
+        @media (max-width: 900px) {
+            .mid-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .top-navbar {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-container">
+
+        <nav class="top-navbar" id="top-nav">
+            <button class="nav-tab active" onclick="engineSwitch('about')">About</button>
+            <button class="nav-tab" onclick="engineSwitch('video')">Video</button>
+            <button class="nav-tab" onclick="engineSwitch('audio')">Audio</button>
+            <button class="nav-tab" onclick="engineSwitch('comics')">Comics</button>
+            <button class="nav-tab" onclick="engineSwitch('novels')">Novels</button>
+            <button class="nav-tab" onclick="engineSwitch('membership')">Membership</button>
+            <button class="nav-tab" onclick="engineSwitch('awards')">Awards</button>
+            <button class="nav-tab" onclick="engineSwitch('analytics')">Analytics</button>
+            <button class="nav-tab" onclick="engineSwitch('contact')">Contact</button>
+        </nav>
+
+        <section class="mid-grid">
+            <div class="author-profile-block">
+                <img src="https://via.placeholder.com/140" alt="Nisha Shastry Avatar" class="author-avatar">
+                <div class="author-meta">
+                    <span class="title-tag">Official Channel Hub</span>
+                    <h1>Nisha Shastry</h1>
+                    <p>Author, Narrator & Creator of Cinematic Audio Universes.</p>
+                </div>
+            </div>
+
+            <div class="vertical-dashboard" id="side-nav">
+                <button class="dash-btn active" onclick="engineSwitch('about')">About</button>
+                <button class="dash-btn" onclick="engineSwitch('video')">Video</button>
+                <button class="dash-btn" onclick="engineSwitch('audio')">Audio</button>
+                <button class="dash-btn" onclick="engineSwitch('comics')">Comics</button>
+                <button class="dash-btn" onclick="engineSwitch('novels')">Novels</button>
+                <button class="dash-btn" onclick="engineSwitch('membership')">Membership</button>
+                <button class="dash-btn" onclick="engineSwitch('awards')">Awards</button>
+                <button class="dash-btn" onclick="engineSwitch('analytics')">Analytics</button>
+                <button class="dash-btn" onclick="engineSwitch('contact')">Contact</button>
+            </div>
+        </section>
+
+        <section class="main-media-theater">
+            <div class="fluid-video-frame">
+                <iframe 
+                    id="theater-iframe"
+                    src="https://www.youtube.com/embed/YI79GfFw_iY" 
+                    title="Nisha Shastry Audiostories Introduction Showcase" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <main class="dynamic-output-viewport">
+            
+            <div id="about" class="content-panel active-view">
+                <h2>Biography & Vision</h2>
+                <p>Content regarding background history, creative philosophy, and vision tracking parameters to be populated here.</p>
+            </div>
+
+            <div id="video" class="content-panel">
+                <h2>Video Transmission Portals</h2>
+                <p>Directory containing categorized sub-folders and links to visual streaming chronicles.</p>
+            </div>
+
+            <div id="audio" class="content-panel">
+                <h2>Audio Narratives & Playlists</h2>
+                <p>Categorized lists dedicated entirely to narrative audiobooks, voice logs, and podcasts.</p>
+            </div>
+
+            <div id="comics" class="content-panel">
+                <h2>Graphic Novels & Comics</h2>
+                <p>Digital archive logs containing access pathways to free PDFs and Amazon collection variants.</p>
+            </div>
+
+            <div id="novels" class="content-panel">
+                <h2>Literary Records & Novels</h2>
+                <p>Comprehensive written literature catalogs, complete with external publisher procurement pathways.</p>
+            </div>
+
+            <div id="membership" class="content-panel">
+                <h2>Channel Prize & Membership Tier Matrix</h2>
+                <p>Infrastructure configurations pending allocation.</p>
+            </div>
+
+            <div id="awards" class="content-panel">
+                <h2>Honors & Academic Accolades</h2>
+                <p>Visual presentation matrix showcasing historical achievements and community awards.</p>
+            </div>
+
+            <div id="analytics" class="content-panel">
+                <h2>System Analytics Display Panel</h2>
+                <p>Metric tracking visualization panel.</p>
+            </div>
+
+            <div id="contact" class="content-panel">
+                <h2>Secure Communication Hub</h2>
+                <p>System endpoints including verified phone channels, mail pathways, and social network coordinates.</p>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        function engineSwitch(targetPanelId) {
+            // Drop visibility across all layout panels
+            const views = document.querySelectorAll('.content-panel');
+            views.forEach(view => view.classList.remove('active-view'));
+
+            // Clear visual activation indicators on both systems
+            const topTabs = document.querySelectorAll('.nav-tab');
+            const sideBtns = document.querySelectorAll('.dash-btn');
+            topTabs.forEach(tab => tab.classList.remove('active'));
+            sideBtns.forEach(btn => btn.classList.remove('active'));
+
+            // Wake chosen display panel view
+            document.getElementById(targetPanelId).classList.add('active-view');
+
+            // Sync visual active indicators across matching elements on both nav bars
+            topTabs.forEach(tab => {
+                if(tab.innerText.trim().toLowerCase() === targetPanelId) tab.classList.add('active');
+            });
+            sideBtns.forEach(btn => {
+                if(btn.innerText.trim().toLowerCase() === targetPanelId) btn.classList.add('active');
+            });
+        }
+    </script>
+</body>
+</html>
