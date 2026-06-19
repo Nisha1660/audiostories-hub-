@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nisha Shastry Audiostories | Official Portal</title>
+    <title>Nisha Shastry Audiostories | Home</title>
     <style>
         /* Base Layout Settings */
         body {
@@ -17,7 +17,6 @@
             align-items: center;
         }
 
-        /* Fixed Wrapper for Absolute Symmetry Alignment */
         .site-container {
             width: 100%;
             max-width: 1140px;
@@ -26,7 +25,7 @@
             box-sizing: border-box;
         }
 
-        /* 1. Top Navbar (Horizontal 9 Tabs) */
+        /* 1. Top Navbar Link System */
         .top-navbar {
             display: flex;
             justify-content: space-between;
@@ -39,12 +38,10 @@
         }
 
         .nav-tab {
-            background: none;
-            border: none;
             color: #8b949e;
             font-size: 0.85rem;
             font-weight: 600;
-            cursor: pointer;
+            text-decoration: none;
             padding: 10px 4px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -57,16 +54,15 @@
             color: #e1b12c;
         }
 
-        /* 2. Mid Section Symmetry Grid (Massive Profile Box vs Vertical Stacked List) */
+        /* 2. Mid Section Symmetry Grid */
         .mid-grid {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             gap: 40px;
             margin-bottom: 35px;
-            align-items: stretch; /* Keeps both sides exactly equal in height */
+            align-items: stretch;
         }
 
-        /* Left Side: Massive Image Container & Text Below */
         .profile-column-wrapper {
             display: flex;
             flex-direction: column;
@@ -74,26 +70,26 @@
         }
 
         .massive-photo-box {
-            flex: 1; /* Automatically stretches height to match the 9 tabs exactly */
+            flex: 1;
             background-color: #161b22;
             border: 2px solid #e1b12c;
             border-radius: 12px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 0 20px rgba(225, 177, 44, 0.4); /* Gold Neon Glow on borders */
+            box-shadow: 0 0 20px rgba(225, 177, 44, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 480px;
         }
 
         .massive-photo-box img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Forces whatever image you use to perfectly fill the box area */
+            object-fit: cover;
             display: block;
         }
 
-        /* Name and details shifted entirely out and under the box */
         .author-meta-under {
             margin-top: 15px;
             text-align: center;
@@ -125,11 +121,11 @@
             display: block;
         }
 
-        /* Right Side: Vertical Dashboard Stacked List with Neon Glow */
+        /* Right Side: True Page Redirect Vertical Buttons */
         .vertical-dashboard {
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Evenly targets row spaces matching the left frame */
+            justify-content: space-between;
             gap: 12px;
             box-sizing: border-box;
         }
@@ -139,7 +135,6 @@
             border: 1px solid #30363d;
             color: #c9d1d9;
             border-radius: 8px;
-            cursor: pointer;
             font-size: 0.95rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -148,21 +143,21 @@
             align-items: center;
             justify-content: flex-start;
             padding: 14px 20px;
+            text-decoration: none;
             transition: all 0.2s ease;
             width: 100%;
             box-sizing: border-box;
-            box-shadow: 0 0 8px rgba(225, 177, 44, 0.05); /* Soft baseline button glow */
+            box-shadow: 0 0 8px rgba(225, 177, 44, 0.05);
         }
 
         .dash-btn:hover, .dash-btn.active {
             background-color: #1f242c;
             border-color: #e1b12c;
             color: #e1b12c;
-            /* Bright Gold Ambient Side Glow on Active/Hover states */
             box-shadow: 0 0 15px rgba(225, 177, 44, 0.35); 
         }
 
-        /* 3. Lower Section: Central Spanning Player Block */
+        /* 3. Media Theater */
         .main-media-theater {
             background-color: #161b22;
             border: 1px solid #30363d;
@@ -170,12 +165,12 @@
             padding: 16px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.3);
             margin-bottom: 35px;
-            margin-top: 15px; /* Added breathing room below the shifted text elements */
+            margin-top: 15px;
         }
 
         .fluid-video-frame {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 4px;
@@ -191,24 +186,16 @@
             border: 0;
         }
 
-        /* 4. Live Content Output Area */
-        .dynamic-output-viewport {
+        /* 4. Stationary Content Output Panel */
+        .output-viewport {
             background-color: #161b22;
             border: 1px solid #30363d;
             padding: 30px;
             border-radius: 8px;
-            min-height: 250px;
+            min-height: 200px;
         }
 
-        .content-panel {
-            display: none;
-        }
-
-        .content-panel.active-view {
-            display: block;
-        }
-
-        .content-panel h2 {
+        .output-viewport h2 {
             color: #f0f6fc;
             margin-top: 0;
             font-size: 1.5rem;
@@ -218,47 +205,9 @@
             letter-spacing: 0.5px;
         }
 
-        /* Shared internal panel layout styling for content entries */
-        .playlist-group {
-            margin-top: 25px;
-            background: #1c2128;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            padding: 15px;
-        }
-        .playlist-group h3 {
-            color: #e1b12c;
-            margin-top: 0;
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 8px;
-        }
-        .episode-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 10px;
-            border-bottom: 1px solid #21262d;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .episode-row:hover {
-            background: #21262d;
-            color: #e1b12c;
-        }
-        .episode-row:last-child {
-            border-bottom: none;
-        }
-
-        /* Responsive Layout Matrix */
         @media (max-width: 900px) {
-            .mid-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .top-navbar {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 4px;
-            }
+            .mid-grid { grid-template-columns: 1fr; gap: 20px; }
+            .top-navbar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
         }
     </style>
 </head>
@@ -266,20 +215,19 @@
 
     <div class="site-container">
 
-        <nav class="top-navbar" id="top-nav">
-            <button class="nav-tab active" onclick="engineSwitch('about')">About</button>
-            <button class="nav-tab" onclick="engineSwitch('video')">Video</button>
-            <button class="nav-tab" onclick="engineSwitch('audio')">Audio</button>
-            <button class="nav-tab" onclick="engineSwitch('comics')">Comics</button>
-            <button class="nav-tab" onclick="engineSwitch('novels')">Novels</button>
-            <button class="nav-tab" onclick="engineSwitch('membership')">Membership</button>
-            <button class="nav-tab" onclick="engineSwitch('awards')">Awards</button>
-            <button class="nav-tab" onclick="engineSwitch('analytics')">Analytics</button>
-            <button class="nav-tab" onclick="engineSwitch('contact')">Contact</button>
+        <nav class="top-navbar">
+            <a href="index.html" class="nav-tab active">About</a>
+            <a href="video.html" class="nav-tab">Video</a>
+            <a href="audio.html" class="nav-tab">Audio</a>
+            <a href="comics.html" class="nav-tab">Comics</a>
+            <a href="novels.html" class="nav-tab">Novels</a>
+            <a href="membership.html" class="nav-tab">Membership</a>
+            <a href="awards.html" class="nav-tab">Awards</a>
+            <a href="analytics.html" class="nav-tab">Analytics</a>
+            <a href="contact.html" class="nav-tab">Contact</a>
         </nav>
 
         <section class="mid-grid">
-            
             <div class="profile-column-wrapper">
                 <div class="massive-photo-box">
                     <img src="https://via.placeholder.com/600x800" alt="Nisha Shastry Official">
@@ -291,140 +239,35 @@
                 </div>
             </div>
 
-            <div class="vertical-dashboard" id="side-nav">
-                <button class="dash-btn active" onclick="engineSwitch('about')">About</button>
-                <button class="dash-btn" onclick="engineSwitch('video')">Video</button>
-                <button class="dash-btn" onclick="engineSwitch('audio')">Audio</button>
-                <button class="dash-btn" onclick="engineSwitch('comics')">Comics</button>
-                <button class="dash-btn" onclick="engineSwitch('novels')">Novels</button>
-                <button class="dash-btn" onclick="engineSwitch('membership')">Membership</button>
-                <button class="dash-btn" onclick="engineSwitch('awards')">Awards</button>
-                <button class="dash-btn" onclick="engineSwitch('analytics')">Analytics</button>
-                <button class="dash-btn" onclick="engineSwitch('contact')">Contact</button>
+            <div class="vertical-dashboard">
+                <a href="index.html" class="dash-btn active">About</a>
+                <a href="video.html" class="dash-btn">Video</a>
+                <a href="audio.html" class="dash-btn">Audio</a>
+                <a href="comics.html" class="dash-btn">Comics</a>
+                <a href="novels.html" class="dash-btn">Novels</a>
+                <a href="membership.html" class="dash-btn">Membership</a>
+                <a href="awards.html" class="dash-btn">Awards</a>
+                <a href="analytics.html" class="dash-btn">Analytics</a>
+                <a href="contact.html" class="dash-btn">Contact</a>
             </div>
         </section>
 
         <section class="main-media-theater">
             <div class="fluid-video-frame">
                 <iframe 
-                    id="theater-iframe"
                     src="https://www.youtube.com/embed/YI79GfFw_iY" 
-                    title="Nisha Shastry Audiostories Introduction Showcase" 
+                    title="Introduction Showcase" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
                 </iframe>
             </div>
         </section>
 
-        <main class="dynamic-output-viewport">
-            
-            <div id="about" class="content-panel active-view">
-                <h2>Biography & Vision</h2>
-                <p>Welcome to the comprehensive multi-verse narrative hub. Dr. Nisha Shastry is an acclaimed author and narrator specializing in rich cinematic sci-fi audio dramas and edge-of-your-seat thrillers.</p>
-            </div>
-
-            <div id="video" class="content-panel">
-                <h2>Video Portals & Series</h2>
-                <p>Select an episode below to change the main video player above and start streaming.</p>
-                
-                <div class="playlist-group">
-                    <h3>🌌 Ritugn Series (Sci-Fi)</h3>
-                    <div class="episode-row" onclick="document.getElementById('theater-iframe').src='https://www.youtube.com/embed/YI79GfFw_iY?autoplay=1'">
-                        <span>Ritugn - Official Sci-Fi Trailer</span>
-                        <span style="color: #8b949e;">Teaser</span>
-                    </div>
-                    <div class="episode-row" onclick="document.getElementById('theater-iframe').src='https://www.youtube.com/embed/6e_XhN-Xzrs?autoplay=1'">
-                        <span>Ritugn - Episode 1: The Gateway to Zydia</span>
-                        <span style="color: #8b949e;">58:51</span>
-                    </div>
-                </div>
-
-                <div class="playlist-group">
-                    <h3>🚀 The Last Olethros (Octet Saga)</h3>
-                    <div class="episode-row" onclick="document.getElementById('theater-iframe').src='https://www.youtube.com/embed/yXzPWhZ2qT0?autoplay=1'">
-                        <span>The Last Olethros - Chapters 1 to 18</span>
-                        <span style="color: #8b949e;">54:20</span>
-                    </div>
-                </div>
-            </div>
-
-            <div id="audio" class="content-panel">
-                <h2>Audio Universes & Audiobooks</h2>
-                <p>Listen to high-intensity audio dramas. Click an episode below to change the main player frame above.</p>
-
-                <div class="playlist-group">
-                    <h3>🎙️ Dharma Series (Hindi Sci-Fi Audiobook)</h3>
-                    <div class="episode-row" onclick="document.getElementById('theater-iframe').src='https://www.youtube.com/embed/1kYdZcWfHwI?autoplay=1'">
-                        <span>Dharma Part 1 - Do Duniya Ka Waris</span>
-                        <span style="color: #8b949e;">11:47:56</span>
-                    </div>
-                </div>
-
-                <div class="playlist-group">
-                    <h3>🎧 Special Suspense & Thriller Audio Logs</h3>
-                    <div class="episode-row" onclick="document.getElementById('theater-iframe').src='https://www.youtube.com/embed/yXzPWhZ2qT0?autoplay=1'">
-                        <span>The Midnight Transmission (Full Audiobook)</span>
-                        <span style="color: #8b949e;">54 mins</span>
-                    </div>
-                </div>
-            </div>
-
-            <div id="comics" class="content-panel">
-                <h2>Graphic Novels & Comics</h2>
-                <p>Digital archive logs containing access pathways to free PDFs and Amazon collection variants.</p>
-            </div>
-
-            <div id="novels" class="content-panel">
-                <h2>Literary Records & Novels</h2>
-                <p>Comprehensive written literature catalogs, complete with external publisher procurement pathways.</p>
-            </div>
-
-            <div id="membership" class="content-panel">
-                <h2>Channel Prize & Membership Tier Matrix</h2>
-                <p>Infrastructure configurations pending allocation.</p>
-            </div>
-
-            <div id="awards" class="content-panel">
-                <h2>Honors & Academic Accolades</h2>
-                <p>Visual presentation matrix showcasing historical achievements and community awards.</p>
-            </div>
-
-            <div id="analytics" class="content-panel">
-                <h2>System Analytics Display Panel</h2>
-                <p>Metric tracking visualization panel.</p>
-            </div>
-
-            <div id="contact" class="content-panel">
-                <h2>Secure Communication Hub</h2>
-                <p>System endpoints including verified phone channels, mail pathways, and social network coordinates.</p>
-            </div>
-
+        <main class="output-viewport">
+            <h2>Biography & Vision</h2>
+            <p>Welcome to the comprehensive multi-verse narrative hub. Dr. Nisha Shastry is an acclaimed author and narrator specializing in rich cinematic sci-fi audio dramas and edge-of-your-seat thrillers.</p>
         </main>
     </div>
 
-    <script>
-        function engineSwitch(targetPanelId) {
-            // Drop visibility across all layout panels
-            const views = document.querySelectorAll('.content-panel');
-            views.forEach(view => view.classList.remove('active-view'));
-
-            // Clear visual activation indicators on both systems
-            const topTabs = document.querySelectorAll('.nav-tab');
-            const sideBtns = document.querySelectorAll('.dash-btn');
-            topTabs.forEach(tab => tab.classList.remove('active'));
-            sideBtns.forEach(btn => btn.classList.remove('active'));
-
-            // Wake chosen display panel view
-            document.getElementById(targetPanelId).classList.add('active-view');
-
-            // Sync visual active indicators across matching elements on both nav bars
-            topTabs.forEach(tab => {
-                if(tab.innerText.trim().toLowerCase() === targetPanelId) tab.classList.add('active');
-            });
-            sideBtns.forEach(btn => {
-                if(btn.innerText.trim().toLowerCase() === targetPanelId) btn.classList.add('active');
-            });
-        }
-    </script>
 </body>
 </html>
