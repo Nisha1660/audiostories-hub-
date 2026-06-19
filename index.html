@@ -60,7 +60,7 @@
             grid-template-columns: 1fr 1.2fr;
             gap: 40px;
             margin-bottom: 35px;
-            align-items: stretch; /* Forces equal heights to guarantee alignment */
+            align-items: stretch;
         }
 
         .profile-column-wrapper {
@@ -70,13 +70,13 @@
         }
 
         .massive-photo-box {
-            flex: 1; /* Automatically stretches height to match the 9 tabs exactly */
+            flex: 1;
             background-color: #161b22;
             border: 2px solid #e1b12c;
             border-radius: 12px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 0 20px rgba(225, 177, 44, 0.4); /* Gold Ambient Glow */
+            box-shadow: 0 0 20px rgba(225, 177, 44, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -86,11 +86,10 @@
         .massive-photo-box img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Guarantees future official photo asset auto-fits perfectly */
+            object-fit: cover;
             display: block;
         }
 
-        /* Name and meta text shifted entirely out and under the box */
         .author-meta-under {
             margin-top: 15px;
             text-align: center;
@@ -122,7 +121,7 @@
             display: block;
         }
 
-        /* Right Side: True Page Redirect Vertical Buttons with Side Glow */
+        /* Right Side: True Page Redirect Vertical Buttons */
         .vertical-dashboard {
             display: flex;
             flex-direction: column;
@@ -171,7 +170,7 @@
 
         .fluid-video-frame {
             position: relative;
-            padding-bottom: 56.25%; /* Clean 16:9 Cinema Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 4px;
